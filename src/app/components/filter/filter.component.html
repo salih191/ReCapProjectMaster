@@ -1,0 +1,37 @@
+<div class="row mb-3">
+  <div class="col col-3">
+    <select
+      [(ngModel)]="selectBrandId"
+      class="form-select"
+      aria-label="Default select example"
+    >
+      <option
+        *ngFor="let brand of brands"
+        [value]="brand.id"
+        selected="{{ getSelectedBrand(brand.id) }}"
+      >
+        {{ brand.name }}
+      </option>
+    </select>
+  </div>
+  <div class="col col-3">
+    <select
+      [(ngModel)]="selectColorId"
+      class="form-select"
+      aria-label="Default select example"
+    >
+      <option
+        *ngFor="let color of colors"
+        [value]="color.id"
+        selected="{{ getSelectedColor(color.id) }}"
+      >
+        {{ color.name }}
+      </option>
+    </select>
+  </div>
+  <div class="col">
+    <button routerLink="/cars/filter/{{ selectBrandId }}/{{ selectColorId }}">
+      Filtrele
+    </button>
+  </div>
+</div>

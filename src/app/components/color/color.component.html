@@ -1,0 +1,18 @@
+<div *ngIf="dataLoaded == false" class="text-center">
+    <div class="spinner-border text-dark" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  
+  <div class="mt-3">
+    <input type="text" [(ngModel)]="filterText" class="form-control"
+    placeholder="renk ara">
+  </div>
+  <div style="color:rgb(0, 0, 0);text-align:center;background-color:rgb(240, 9, 9);font-size:20px;border-radius: 7px;">Renkler</div>
+  <ul *ngIf="dataLoaded"  class="list-group">
+    <li (click)="clearCurrentColor()" routerLink="/cars" [class]="getAllColorClass()">Tüm Arabalar</li>
+      <li  routerLink="/cars/color/{{ color.id }}"
+      (click)="setCurrentColor(color)"
+      *ngFor="let color of colors | filterColor:filterText "
+      [ngClass]="getCurrentColorClass(color)">{{color.name}}</li>
+  </ul>
