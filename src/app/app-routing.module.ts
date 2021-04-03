@@ -5,8 +5,10 @@ import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { CarComponent } from './components/car/car.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
+import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {path:"",component:CarComponent},
@@ -18,9 +20,10 @@ const routes: Routes = [
   {path:"cars/filter/:brandId/:colorId",component:CarComponent},
   {path:"cars/car-detail/:carId", component:CarDetailComponent},
   {path:"payment/pay/:rental/:dailyPrice",component:PaymentComponent},
-  {path:"brands/add",component:BrandAddComponent},
-  {path:"colors/add",component:ColorAddComponent},
-  {path:"cars/add",component:CarAddComponent},
+  {path:"brands/add",component:BrandAddComponent,canActivate:[LoginComponent]},
+  {path:"colors/add",component:ColorAddComponent,canActivate:[LoginComponent]},
+  {path:"cars/add",component:CarAddComponent,canActivate:[LoginGuard]},
+  {path:"login",component:LoginComponent},
 ];
 
 @NgModule({
